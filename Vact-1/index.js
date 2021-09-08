@@ -1,7 +1,7 @@
 import { isEvent, isAttribute, isTextElement } from "./utils/helper";
 import { ElememtType } from "./utils/Enum";
 
-const generater = () => {
+const Vact = () => {
   let rootInstance = null;
 
   /**
@@ -12,7 +12,7 @@ const generater = () => {
   const reconcileChildren = (instance, element) => {
     const { dom, childInstances } = instance;
     const nextChildElement = element.props.children || [];
-    const maxCount = Math.max(childInstances.length, nextChildElement.length);
+    const maxCount = Math.max(childInstances?.length, nextChildElement?.length) || 0;
     let newChildInstances = [];
     for (let i = 0; i < maxCount; i++) {
       const childIns = childInstances[i];
@@ -20,7 +20,7 @@ const generater = () => {
       const newInstance = reconcile(dom, childIns, childEle);
       // 处理instance为null的情况
       if (newInstance) {
-        newChildInstances.push();
+        newChildInstances.push(newInstance);
       }
     }
     return newChildInstances;
@@ -32,7 +32,7 @@ const generater = () => {
       if (isEvent(key)) {
         // 处理事件
         const eventName = key.slice(2).toLowerCase();
-        eventName && dom.removeListener(eventName, prevProps[key]);
+        eventName && dom.removeEventListener(eventName, prevProps[key]);
       } else if (isAttribute(key)) {
         // 处理属性
         dom[key] = null;
@@ -120,7 +120,7 @@ const generater = () => {
     } else if (instance.element.type !== element.type) {
       newInstance = instantiate(element);
       parentDom.replaceChild(newInstance.dom, instance.dom);
-    } else if (typeof element.type !== "string") {
+    } else if (typeof element.type === "string") {
       // 感受到instance的强大没有！！！
       // 上一次保存的dom直接拿来使用，只需要两步：更新element，更新dom属性！不产生dom增删操作！
       updateDomProperties(instance.dom, instance.element.props, element.props);
@@ -192,6 +192,4 @@ const generater = () => {
   };
 };
 
-const Vact = generater();
-
-export default Vact;
+export default Vact();

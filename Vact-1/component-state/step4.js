@@ -19,7 +19,7 @@
   } else if (instance.element.type !== element.type) {
     newInstance = instantiate(element);
     parentDom.replaceChild(newInstance.dom, instance.dom);
-  } else if(typeof element.type !== 'string') {
+  } else if(typeof element.type === 'string') {
  // 感受到instance的强大没有！！！
     // 上一次保存的dom直接拿来使用，只需要两步：更新element，更新dom属性！不产生dom增删操作！
     updateDomProperties(instance.dom, instance.element.props, element.props);

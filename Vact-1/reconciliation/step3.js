@@ -53,7 +53,7 @@ const updateDomProperties = (dom, prevProps, nextProps) => {
     if (isEvent(key)) {
       // 处理事件
       const eventName = key.slice(2).toLowerCase();
-      eventName && dom.removeListener(eventName, prevProps[key]);
+      eventName && dom.removeEventListener(eventName, prevProps[key]);
     } else if (isAttribute(key)) {
       // 处理属性
       dom[key] = null;

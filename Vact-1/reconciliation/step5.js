@@ -48,7 +48,7 @@
     const newInstance = reconcile(dom, childIns, childEle);
     // 处理instance为null的情况
     if(newInstance) {
-      newChildInstances.push();
+      newChildInstances.push(newInstance);
     }
   }
   return newChildInstances;
