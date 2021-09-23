@@ -36,6 +36,7 @@ const reconcileChildrenArray = (wipFiber, childrenElements) => {
 
     // 新的元素存在，但类型不相同，替换
     if(element && !isSameType) {
+      // 因为没有对应的旧fiber，所以这一步中没有alternate和stateNode属性，实例stateNode会在beginWork生成
       newFiber = {
         parent: wipFiber,
         type: element.type,
@@ -57,7 +58,7 @@ const reconcileChildrenArray = (wipFiber, childrenElements) => {
       oldFiber = oldFiber.sibling;
     }
 
-    // 处理新生成的fiber
+    // 处理新生成的fiber，将其添加到work-in-progress tree
     if(index === 0) {
       wipFiber.child = newFiber;
     } else if(prevFiber && element) {

@@ -155,3 +155,8 @@ beginWork做了两件事：
 
 我们在`performUnitOfWork`中可以发现，我们会从最外层的子元素开始向上调用`completeWork`，
 所以我们当每一个fiber都会将子fiber和当前fiber有effectTag的fiber都存入父fiber的情况下，执行到根元素的情况下，我们就能收集到所有的有effectTag fiber了。
+
+### Step11 finally：Mutate the DOM
+
+`commitAllWork`
+`commitWork`，根据effectTag处理dom的增删改
