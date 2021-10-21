@@ -65,7 +65,7 @@ class App extends Vact.Component {
   }
 };
 
-Vacr.render(<App/>, document.createElement('div'));
+Vact.render(<App/>, document.createElement('div'));
 
 ```
 
